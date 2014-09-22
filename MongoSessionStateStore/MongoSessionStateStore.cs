@@ -112,7 +112,8 @@ namespace MongoSessionStateStore
         /// <returns>MongoCollection</returns>
         private MongoCollection<BsonDocument> GetSessionCollection(MongoServer conn)
         {
-            return conn.GetDatabase("SessionState").GetCollection("Sessions");
+            var databaseName = MongoUrl.Create(_connectionString).DatabaseName;
+            return conn.GetDatabase(databaseName).GetCollection("Sessions");
         }
 
         /// <summary>
